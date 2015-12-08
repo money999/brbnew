@@ -21,7 +21,7 @@ for yi = 1:16
     at = 0;
     pNum = yi * 5;
     for yj = 1:30
-        [sp, sv, sc, p1, v1, c1, p2, v2, c2] = gen_match_source(pNum, 5, 2*pi, 0.5, 0.8);
+        [sp, sv, sc, p1, v1, c1, p2, v2, c2] = gen_match_source(pNum, 5, 2*pi, 0.5, 1);
         pdis = pdist2(p1, p2);
         vdis = pdist2(v1, v2);
         c1tm1 = normpdf(c1, -1,2)./(normpdf(c1, -1,2) + normpdf(c1, 1,2));%注意点除根据文章所给公式计算bpa
@@ -43,11 +43,11 @@ for yi = 1:16
             end
         end
         result = goalBRB( m1, m0, mA );
-         dim = size(result,1) * 0.8;
+         dim = size(result,1) * 1;
          result = result((1:dim),(1:dim));
         at = at + size(result,1) - sum(diag(result));
     end
-    yp(yi) = at / 30 / (pNum * 0.8);
+    yp(yi) = at / 30 / (pNum * 1);
     yp(yi) = 1 - yp(yi);
 end
 
